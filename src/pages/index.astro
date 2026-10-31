@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { posts } from '../data/posts';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const categories = ['All', 'Artificial Intelligence', 'Research Notes', 'Perspectives'];
+---
+
+<BaseLayout>
+  <main>
+    <section class="hero shell" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> A PERSONAL RESEARCH JOURNAL</div>
+        <h1>Curiosity,<br /><em>carefully considered.</em></h1>
+        <p>Notes on artificial intelligence, the craft of research, and the questions that make us think twice.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#articles">Explore the writing <span>↗</span></a>
+          <a class="text-link" href="#about">A little about me <span>→</span></a>
+        </div>
+      </div>
+      <img
+        class="hero-art"
+        src={`${base}/hero.png`}
+        alt="Illustration of a researcher sitting with a laptop beside her playful black schnauzer puppy"
+      />
+      <div class="hero-scroll">SCROLL TO EXPLORE <span>↓</span></div>
+    </section>
+
+    <section class="intro-band">
+      <div class="shell intro-grid">
+        <p class="intro-kicker">WHAT YOU'LL FIND HERE</p>
+        <p class="intro-statement">A space for asking better questions, connecting unlikely ideas, and making complex things a little clearer.</p>
+      </div>
+    </section>
+
+    <section class="articles-section shell" id="articles">
+      <div class="section-heading">
+        <div><span class="small-label">THE JOURNAL</span><h2>Recent writing<span class="accent">.</span></h2></div>
+        <p>Explorations, working notes, and thoughtful takes from the intersection of research and AI.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter articles">
+        {categories.map((category, index) => (
+          <button class:list={['filter', { active: index === 0 }]} data-filter={category}>
+            {category === 'All' ? 'All writing' : category}
+          </button>
+        ))}
+      </div>
+      <div class="article-grid" id="article-grid">
+        {posts.map((post) => <PostCard post={post} />)}
+      </div>
+      <p class="sample-note">These are sample article previews to show how your future writing will look. Replace them with your own posts when you're ready.</p>
+    </section>
+
+    <section class="quote-section">
+      <div class="shell quote-inner">
+        <span class="quote-star">✳</span>
+        <blockquote>“The best questions don't always lead to simple answers. Sometimes they lead to better questions.”</blockquote>
+        <span class="quote-caption">A NOTE TO SELF</span>
+      </div>
+    </section>
+
+    <section class="about-section shell" id="about">
+      <div class="about-index">01 / THE HUMAN BEHIND THE NOTES</div>
+      <div class="about-body">
+        <span class="small-label">HELLO THERE</span>
+        <h2>Research-minded.<br /><em>Endlessly curious.</em></h2>
+        <p>Welcome to my corner of the internet. This is where I collect ideas, examine emerging AI tools, and think out loud about the way we learn, work, and create.</p>
+        <p>Expect thoughtful questions, practical experiments, and the occasional interruption from a very curious schnauzer.</p>
+        <a class="text-link" href="#newsletter">Stay in touch <span>→</span></a>
+      </div>
+      <div class="about-decoration" aria-hidden="true"><span>✳</span><small>STAY CURIOUS</small></div>
+    </section>
+
+    <section class="newsletter-section" id="newsletter">
+      <div class="shell newsletter-wrap">
+        <div>
+          <span class="small-label">LET'S KEEP THINKING</span>
+          <h2>A little more curiosity<br /><em>in your inbox.</em></h2>
+          <p>An occasional note when there's something worth sharing. No noise, just ideas.</p>
+        </div>
+        <form class="newsletter-form" id="newsletter-form">
+          <label for="email">YOUR EMAIL ADDRESS</label>
+          <div class="input-row">
+            <input id="email" type="email" placeholder="you@example.com" required />
+            <button type="submit" aria-label="Join the list">→</button>
+          </div>
+          <small id="signup-message">A preview form — mailing list integration coming later.</small>
+        </form>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<script>
+  const filters = document.querySelectorAll<HTMLButtonElement>('.filter');
+  const cards = document.querySelectorAll<HTMLElement>('.post-card');
+
+  filters.forEach((button) => {
+    button.addEventListener('click', () => {
+      filters.forEach((filter) => filter.classList.remove('active'));
+      button.classList.add('active');
+
+      cards.forEach((card) => {
+        card.hidden = button.dataset.filter !== 'All'
+          && card.dataset.category !== button.dataset.filter;
+      });
+    });
+  });
+
+  document.querySelector('#newsletter-form')?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const message = document.querySelector('#signup-message');
+    if (message) {
+      message.textContent = 'Thanks for your interest! This is a design preview; subscriptions are not active yet.';
+    }
+  });
+</script>

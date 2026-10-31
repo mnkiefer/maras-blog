@@ -1,0 +1,29 @@
+---
+import type { Post } from '../data/posts';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<a
+  class="post-card"
+  href={`${base}/writing/${post.slug}/`}
+  data-category={post.category}
+>
+  <div class:list={['post-visual', post.tone]}>
+    <span class="visual-shape">{post.symbol}</span>
+  </div>
+  <div class="post-body">
+    <span class="post-meta">{post.category}</span>
+    <h3>{post.title}</h3>
+    <p>{post.excerpt}</p>
+    <div class="post-bottom">
+      <span>{post.date} · {post.readTime}</span>
+      <span aria-hidden="true">↗</span>
+    </div>
+  </div>
+</a>
