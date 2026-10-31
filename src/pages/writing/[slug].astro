@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { posts, type Post } from '../../data/posts';
+
+export function getStaticPaths() {
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title={`${post.title} — Fieldnotes`} description={post.excerpt}>
+  <main>
+    <div class="shell article-shell">
+      <a href={`${base}/#articles`} class="back-link">← All writing</a>
+      <article id="article-content">
+        <div class="article-category">{post.category.toUpperCase()} · {post.readTime}</div>
+        <h1 class="article-title">{post.title}</h1>
+        <p class="article-deck">{post.intro}</p>
+        <hr class="article-rule" />
+        <div class="article-prose">
+          {post.sections.map((section) => (
+            <>
+              <h2>{section.heading}</h2>
+              <p>{section.body}</p>
+            </>
+          ))}
+        </div>
+        <div class="article-note">Sample editorial content. Replace with your own original research and perspective before sharing this site publicly.</div>
+      </article>
+      <div class="article-footer">
+        <a class="button primary" href={`${base}/#articles`}>Back to all articles <span>↗</span></a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
