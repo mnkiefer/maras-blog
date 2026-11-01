@@ -15,15 +15,22 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   data-category={post.category}
 >
   <div class:list={['post-visual', post.tone]}>
-    <span class="visual-shape">{post.symbol}</span>
+    <span class:list={['visual-shape', { 'word-symbol': post.symbol.length > 1 }]}>{post.symbol}</span>
   </div>
   <div class="post-body">
     <span class="post-meta">{post.category}</span>
     <h3>{post.title}</h3>
     <p>{post.excerpt}</p>
     <div class="post-bottom">
-      <span>{post.date} · {post.readTime}</span>
+      <span><time datetime={post.dateTime}>{post.date}</time> · {post.readTime}</span>
       <span aria-hidden="true">↗</span>
     </div>
   </div>
 </a>
+
+<style>
+  .visual-shape.word-symbol {
+    font-size: 42px;
+    letter-spacing: -2px;
+  }
+</style>

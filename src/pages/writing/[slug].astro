@@ -17,24 +17,31 @@ const { post } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<BaseLayout title={`${post.title} — Fieldnotes`} description={post.excerpt}>
+<BaseLayout title={`${post.title} — Mara’s Blog`} description={post.excerpt}>
   <main>
     <div class="shell article-shell">
       <a href={`${base}/#articles`} class="back-link">← All writing</a>
       <article id="article-content">
-        <div class="article-category">{post.category.toUpperCase()} · {post.readTime}</div>
+        <div class="article-category">{post.category.toUpperCase()} · <time datetime={post.dateTime}>{post.date}</time> · {post.readTime}</div>
         <h1 class="article-title">{post.title}</h1>
         <p class="article-deck">{post.intro}</p>
         <hr class="article-rule" />
         <div class="article-prose">
           {post.sections.map((section) => (
-            <>
+            <section>
               <h2>{section.heading}</h2>
-              <p>{section.body}</p>
-            </>
+              {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+            </section>
           ))}
+          <section class="article-sources" aria-labelledby="sources-heading">
+            <h2 id="sources-heading">Further reading</h2>
+            <ul>
+              <li><a href="https://github.com/githubnext/gh-cao">GitHub Next: Central Agentic Ops</a></li>
+              <li><a href="https://githubnext.github.io/gh-aw-cao/architecture-at-a-glance/">Central Agentic Ops: Architecture at a glance</a></li>
+              <li><a href="https://github.com/githubnext/gh-cao/blob/main/docs/architecture-at-a-glance.md">Architecture at a glance (GitHub source)</a></li>
+            </ul>
+          </section>
         </div>
-        <div class="article-note">Sample editorial content. Replace with your own original research and perspective before sharing this site publicly.</div>
       </article>
       <div class="article-footer">
         <a class="button primary" href={`${base}/#articles`}>Back to all articles <span>↗</span></a>
@@ -42,3 +49,42 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
   </main>
 </BaseLayout>
+
+<style>
+  .article-prose a {
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+  }
+
+  .article-prose a:hover {
+    color: var(--ink);
+  }
+
+  .article-sources {
+    border-top: 1px solid var(--line);
+    margin-top: 48px;
+  }
+
+  .article-sources ul {
+    padding-left: 1.2em;
+    font-size: 0.85em;
+  }
+
+  .article-sources li {
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 700px) {
+    .article-title {
+      font-size: clamp(38px, 9vw, 50px);
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+
+    .article-deck {
+      font-size: 18px;
+    }
+  }
+</style>
