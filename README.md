@@ -1,4 +1,4 @@
-# Fieldnotes
+# Mara’s Pages
 
 A modern Astro blog for research, artificial intelligence, and curious thinking.
 
