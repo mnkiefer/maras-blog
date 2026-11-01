@@ -1,6 +1,8 @@
-# Mara’s Pages
+# Mara’s Blog
 
-A modern Astro blog for research, artificial intelligence, and curious thinking.
+Research, AI & the ideas in between.
+
+An Astro blog about research, artificial intelligence, and curious thinking. The first article explores GitHub Next’s Central Agentic Ops research prototype.
 
 ## Development
 
@@ -20,7 +22,7 @@ The local site is available at `http://localhost:4321/maras-blog/`.
 | `npm run build` | Validate and create the production build |
 | `npm run preview` | Preview the production build |
 
-Posts are defined in `src/data/posts.ts`. Pages are generated from Astro components in `src/pages`.
+Posts are defined in `src/data/posts.ts`. The homepage lists them, and Astro generates dedicated pages under `/writing/[slug]/`. The existing illustration is served unchanged from `public/hero.png`.
 
 ## Deployment
 
