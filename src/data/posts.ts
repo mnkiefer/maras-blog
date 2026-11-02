@@ -1,16 +1,20 @@
+export interface PostFigure {
+  src: string;
+  animatedSrc?: string;
+  alt: string;
+  caption: string;
+  label: string;
+  width: number;
+  height: number;
+  placement: 'aside-left' | 'aside-right' | 'center' | 'wide';
+  sourceLabel: string;
+  sourceUrl: string;
+}
+
 export interface PostSection {
   heading: string;
   paragraphs: string[];
-  figure?: {
-    src: string;
-    alt: string;
-    caption: string;
-    label: string;
-    width: number;
-    height: number;
-    presentation: 'narrow' | 'wide';
-    sourceUrl: string;
-  };
+  figure?: PostFigure;
 }
 
 export interface Post {
@@ -58,7 +62,8 @@ export const posts: Post[] = [
           label: 'Overview dashboard',
           width: 780,
           height: 1688,
-          presentation: 'narrow',
+          placement: 'aside-right',
+          sourceLabel: 'CAO landing page',
           sourceUrl: 'https://githubnext.github.io/gh-cao/',
         },
       },
@@ -70,12 +75,14 @@ export const posts: Post[] = [
         ],
         figure: {
           src: '/cao-shared-workflows.webp',
+          animatedSrc: '/cao-shared-workflows-animated.webp',
           alt: 'CAO workflow ecosystem diagram showing enterprise- and organization-owned shared workflows alongside local repository workflows and their safe outputs across enrolled repositories.',
-          caption: 'Example workflow ecosystem. Ownership and scope remain explicit; the diagram does not grant authority.',
+          caption: 'Illustrative workflow ecosystem: runs move from queued to done, then safe outputs appear. This is not live operational evidence.',
           label: 'shared-workflows diagram',
           width: 3048,
           height: 1040,
-          presentation: 'wide',
+          placement: 'wide',
+          sourceLabel: 'CAO landing page',
           sourceUrl: 'https://githubnext.github.io/gh-cao/',
         },
       },

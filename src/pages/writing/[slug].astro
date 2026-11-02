@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleFigure from '../../components/ArticleFigure.astro';
 import { posts, type Post } from '../../data/posts';
 
 export function getStaticPaths() {
@@ -27,28 +28,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <p class="article-deck">{post.intro}</p>
         <div class="article-prose">
           {post.sections.map((section) => (
-            <section>
+            <section class:list={{ 'section-with-aside': section.figure?.placement.startsWith('aside-') }}>
               <h2>{section.heading}</h2>
+              {section.figure && section.figure.placement.startsWith('aside-') && <ArticleFigure figure={section.figure} />}
               {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-              {section.figure && (
-                <figure class:list={['article-figure', `article-figure--${section.figure.presentation}`]}>
-                  <img
-                    src={`${base}${section.figure.src}`}
-                    alt={section.figure.alt}
-                    width={section.figure.width}
-                    height={section.figure.height}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <figcaption>
-                    {section.figure.caption}
-                    <span class="figure-links">
-                      <a href={`${base}${section.figure.src}`}>View full-size {section.figure.label}</a>
-                      <a href={section.figure.sourceUrl}>Source: CAO landing page</a>
-                    </span>
-                  </figcaption>
-                </figure>
-              )}
+              {section.figure && !section.figure.placement.startsWith('aside-') && <ArticleFigure figure={section.figure} />}
             </section>
           ))}
           <section class="article-sources" aria-labelledby="sources-heading">
@@ -118,43 +102,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     color: var(--ink);
   }
 
-  .article-figure {
-    margin: 32px 0 42px;
-  }
-
-  .article-figure--narrow {
-    max-width: 390px;
-  }
-
-  .article-figure--wide {
-    position: relative;
-    left: 50%;
-    width: min(1200px, 90vw);
-    transform: translateX(-50%);
-  }
-
-  .article-figure img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-  }
-
-  .article-figure figcaption {
-    margin-top: 12px;
-    font: 14px/1.6 'DM Sans', sans-serif;
-    color: var(--sub);
-  }
-
-  .figure-links {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 22px;
-    margin-top: 4px;
-  }
-
-  .figure-links a {
-    display: inline-block;
-    padding: 12px 0;
+  .section-with-aside {
+    display: flow-root;
   }
 
   .article-sources {
