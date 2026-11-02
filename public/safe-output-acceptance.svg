@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title desc">
+  <title id="title">Safe-output acceptance evidence</title>
+  <desc id="desc">Three issues are evaluated using receipt, lifecycle, and explicit implementation lineage. Only issue 101 has a merged pull request and is accepted.</desc>
+  <defs>
+    <style>
+      .title{font:500 38px Georgia,serif;fill:#202d36}.sub{font:16px Arial,sans-serif;fill:#5d6b70}.col{font:700 13px Arial,sans-serif;letter-spacing:1.2px;fill:#5d6b70}.id{font:700 21px Arial,sans-serif;fill:#202d36}.body{font:15px Arial,sans-serif;fill:#5d6b70}.strong{font:700 15px Arial,sans-serif;fill:#202d36}.status{font:700 14px Arial,sans-serif;letter-spacing:1px}.summary-label{font:700 14px Arial,sans-serif;fill:#5d6b70}.summary-value{font:700 30px Arial,sans-serif;fill:#386d9e}.note{font:600 17px Arial,sans-serif;fill:#202d36}
+    </style>
+  </defs>
+  <rect width="1440" height="940" rx="22" fill="#fbfaf7"/>
+  <text class="title" x="60" y="68">Acceptance follows evidence, not terminal labels</text>
+  <text class="sub" x="60" y="101">A closed issue is not accepted unless an authoritative implementation relationship is present.</text>
+
+  <g transform="translate(60 145)">
+    <text class="col" x="24" y="20">SAFE OUTPUT</text>
+    <text class="col" x="258" y="20">RECEIPT + LIFECYCLE</text>
+    <text class="col" x="610" y="20">IMPLEMENTATION LINEAGE</text>
+    <text class="col" x="1115" y="20">DETERMINATION</text>
+
+    <g transform="translate(0 42)">
+      <rect width="1320" height="155" rx="16" fill="#fff" stroke="#b9cedb" stroke-width="2"/>
+      <circle cx="42" cy="48" r="16" fill="#e8f0f5" stroke="#386d9e" stroke-width="2"/>
+      <path d="M34 48l6 6 11-13" fill="none" stroke="#386d9e" stroke-width="3"/>
+      <text class="id" x="70" y="55">issue:101</text>
+      <text class="strong" x="258" y="49">CLOSED</text>
+      <text class="body" x="258" y="77">Receipt verified</text>
+      <text class="strong" x="610" y="49">Explicit link to PR #201</text>
+      <text class="body" x="610" y="77">Authoritative disposition: merged</text>
+      <path d="M915 66H1065" stroke="#749db7" stroke-width="3"/>
+      <path d="M1050 57l15 9-15 9" fill="none" stroke="#749db7" stroke-width="3"/>
+      <rect x="1115" y="38" width="170" height="44" rx="22" fill="#e8f0f5" stroke="#386d9e"/>
+      <text class="status" x="1200" y="66" text-anchor="middle" fill="#285879">ACCEPTED</text>
+      <text class="body" x="24" y="126">Durable identity, verified receipt, explicit lineage, and merged implementation are all present.</text>
+    </g>
+
+    <g transform="translate(0 219)">
+      <rect width="1320" height="155" rx="16" fill="#fff" stroke="#d9dedf" stroke-width="2"/>
+      <circle cx="42" cy="48" r="16" fill="#fff8f3" stroke="#d9987b" stroke-width="2"/>
+      <path d="M42 38v11l7 5" fill="none" stroke="#ad5b39" stroke-width="3"/>
+      <text class="id" x="70" y="55">issue:102</text>
+      <text class="strong" x="258" y="49">OPEN</text>
+      <text class="body" x="258" y="77">Receipt verified</text>
+      <text class="strong" x="610" y="49">No implementation link</text>
+      <text class="body" x="610" y="77">Work remains right-censored</text>
+      <path d="M915 66H1065" stroke="#d9dedf" stroke-width="3" stroke-dasharray="8 7"/>
+      <rect x="1115" y="38" width="170" height="44" rx="22" fill="#fff8f3" stroke="#d9987b"/>
+      <text class="status" x="1200" y="66" text-anchor="middle" fill="#8b4a30">PENDING</text>
+      <text class="body" x="24" y="126">An unresolved output is not automatically a failure.</text>
+    </g>
+
+    <g transform="translate(0 396)">
+      <rect width="1320" height="155" rx="16" fill="#fff" stroke="#d9dedf" stroke-width="2"/>
+      <circle cx="42" cy="48" r="16" fill="#f3f5f4" stroke="#5d6b70" stroke-width="2"/>
+      <text x="42" y="55" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" font-weight="700" fill="#5d6b70">?</text>
+      <text class="id" x="70" y="55">issue:103</text>
+      <text class="strong" x="258" y="49">CLOSED</text>
+      <text class="body" x="258" y="77">Corroborated lifecycle</text>
+      <text class="strong" x="610" y="49">Closure only</text>
+      <text class="body" x="610" y="77">No implementation lineage</text>
+      <path d="M915 66H1065" stroke="#d9dedf" stroke-width="3" stroke-dasharray="3 8"/>
+      <rect x="1115" y="38" width="170" height="44" rx="22" fill="#f3f5f4" stroke="#5d6b70"/>
+      <text class="status" x="1200" y="66" text-anchor="middle" fill="#46545a">UNKNOWN</text>
+      <text class="body" x="24" y="126">Closure can mean duplicate, rejected, obsolete, or cleanup; it cannot stand in for acceptance.</text>
+    </g>
+  </g>
+
+  <g transform="translate(60 750)">
+    <rect width="1320" height="136" rx="16" fill="#e8f0f5" stroke="#b9cedb"/>
+    <line x1="440" y1="22" x2="440" y2="92" stroke="#b9cedb"/>
+    <line x1="880" y1="22" x2="880" y2="92" stroke="#b9cedb"/>
+    <text class="summary-label" x="220" y="48" text-anchor="middle">RETAINED OUTPUTS</text>
+    <text class="summary-value" x="220" y="83" text-anchor="middle">3</text>
+    <text class="summary-label" x="660" y="48" text-anchor="middle">ACCEPTED IMPLEMENTATIONS</text>
+    <text class="summary-value" x="660" y="83" text-anchor="middle">1</text>
+    <text class="summary-label" x="1100" y="48" text-anchor="middle">INFERRED CONVERSION RATE</text>
+    <text class="summary-value" x="1100" y="83" text-anchor="middle">none</text>
+    <text class="note" x="660" y="119" text-anchor="middle">Unknown is not zero; different evidence coverage prevents a valid simple ratio.</text>
+  </g>
+</svg>

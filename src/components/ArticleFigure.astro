@@ -38,7 +38,7 @@ const animatedSrc = figure.animatedSrc && `${base}${figure.animatedSrc}`;
     {figure.caption}
     <span class="figure-links">
       <a href={stillSrc}>View full-size {figure.label} {animatedSrc && '(still image)'}</a>
-      <a href={figure.sourceUrl}>Source: {figure.sourceLabel}</a>
+      {figure.sourceUrl && figure.sourceLabel && <a href={figure.sourceUrl}>Source: {figure.sourceLabel}</a>}
     </span>
   </figcaption>
 </figure>

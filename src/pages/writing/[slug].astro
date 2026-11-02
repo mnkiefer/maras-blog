@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleBlock from '../../components/ArticleBlock.astro';
 import ArticleFigure from '../../components/ArticleFigure.astro';
 import { posts, type Post } from '../../data/posts';
 
@@ -25,23 +26,36 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <article id="article-content">
         <div class="article-category">{post.category} · <time datetime={post.dateTime}>{post.date}</time> · {post.readTime}</div>
         <h1 class="article-title">{post.title}</h1>
-        <p class="article-deck">{post.intro}</p>
+        {post.introHtml ? <p class="article-deck" set:html={post.introHtml} /> : <p class="article-deck">{post.intro}</p>}
         <div class="article-prose">
+          {post.leadParagraphs?.map((paragraph) => <p set:html={paragraph} />)}
           {post.sections.map((section) => (
             <section class:list={{ 'section-with-aside': section.figure?.placement.startsWith('aside-') }}>
               <h2>{section.heading}</h2>
-              {section.figure && section.figure.placement.startsWith('aside-') && <ArticleFigure figure={section.figure} />}
-              {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-              {section.figure && !section.figure.placement.startsWith('aside-') && <ArticleFigure figure={section.figure} />}
+              {section.blocks
+                ? section.blocks.map((block) => <ArticleBlock block={block} />)
+                : (
+                  <>
+                    {section.figure && section.figure.placement.startsWith('aside-') && <ArticleFigure figure={section.figure} />}
+                    {section.paragraphs?.map((paragraph) => <p>{paragraph}</p>)}
+                    {section.figure && !section.figure.placement.startsWith('aside-') && <ArticleFigure figure={section.figure} />}
+                  </>
+                )}
             </section>
           ))}
           <section class="article-sources" aria-labelledby="sources-heading">
-            <h2 id="sources-heading">Further reading</h2>
-            <ul>
-              <li><a href="https://githubnext.github.io/gh-cao/">Central Agentic Ops: Official site</a></li>
-              <li><a href="https://githubnext.github.io/gh-cao/architecture-at-a-glance/">What is Central Agentic Ops?</a></li>
-              <li><a href="https://github.github.com/gh-aw/">GitHub Agentic Workflows</a></li>
-            </ul>
+            <h2 id="sources-heading">{post.sourcesHeading || 'Further reading'}</h2>
+            {post.sourcesOrdered
+              ? (
+                <ol>
+                  {post.sources.map((source) => <li id={source.id && `source-${source.id}`} set:html={source.html} />)}
+                </ol>
+              )
+              : (
+                <ul>
+                  {post.sources.map((source) => <li id={source.id && `source-${source.id}`} set:html={source.html} />)}
+                </ul>
+              )}
           </section>
         </div>
       </article>
@@ -88,6 +102,18 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     line-height: 1.6;
   }
 
+  .article-deck :global(a) {
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .article-deck :global(.citation) {
+    margin-left: 0.15em;
+    font: 600 0.62em/1 'DM Sans', sans-serif;
+    text-decoration: none;
+  }
+
   .article-prose {
     font-size: 20px;
   }
@@ -96,14 +122,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     font-size: 32px;
   }
 
-  .article-prose a {
+  .article-prose :global(strong) {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .article-prose :global(a) {
     color: var(--blue);
     text-decoration: underline;
     text-underline-offset: 3px;
     overflow-wrap: anywhere;
   }
 
-  .article-prose a:hover {
+  .article-prose :global(a:hover) {
     color: var(--ink);
   }
 
@@ -111,12 +142,40 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     display: flow-root;
   }
 
+  .article-prose :global(ol),
+  .article-prose :global(ul) {
+    padding-left: 1.35em;
+    margin: 0 0 28px;
+  }
+
+  .article-prose :global(li) {
+    margin-bottom: 12px;
+    padding-left: 0.2em;
+  }
+
+  .article-prose :global(pre) {
+    margin: 28px 0 34px;
+    padding: 20px 22px;
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    background: #f3f5f4;
+    color: var(--ink);
+    font: 15px/1.65 ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+  }
+
+  .article-prose :global(.citation) {
+    margin-left: 0.15em;
+    font: 600 0.62em/1 'DM Sans', sans-serif;
+    text-decoration: none;
+  }
+
   .article-sources {
     border-top: 1px solid var(--line);
     margin-top: 48px;
   }
 
-  .article-sources ul {
+  .article-sources ul,
+  .article-sources ol {
     padding-left: 1.2em;
     font-size: 0.85em;
   }
