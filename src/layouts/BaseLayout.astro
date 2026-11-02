@@ -36,3 +36,15 @@ const {
     <Footer />
   </body>
 </html>
+
+<style is:global>
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .post-card {
+      transition: none;
+    }
+  }
+</style>
