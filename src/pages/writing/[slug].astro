@@ -32,14 +32,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
               {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
               {section.figure && (
                 <figure class:list={['article-figure', `article-figure--${section.figure.presentation}`]}>
-                  <img
-                    src={`${base}${section.figure.src}`}
-                    alt={section.figure.alt}
-                    width={section.figure.width}
-                    height={section.figure.height}
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  <div class="figure-print">
+                    <img
+                      src={`${base}${section.figure.src}`}
+                      alt={section.figure.alt}
+                      width={section.figure.width}
+                      height={section.figure.height}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
                   <figcaption>
                     {section.figure.caption}
                     <span class="figure-links">
@@ -133,6 +135,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     transform: translateX(-50%);
   }
 
+  .figure-print {
+    padding: 6px;
+    border: 1px solid #e8e7e2;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(30, 53, 66, 0.05);
+  }
+
   .article-figure img {
     display: block;
     max-width: 100%;
@@ -172,6 +181,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   @media (max-width: 700px) {
+    .figure-print {
+      padding: 4px;
+    }
+
     .article-title {
       font-size: clamp(34px, 8vw, 44px);
     }

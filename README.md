@@ -22,7 +22,7 @@ The local site is available at `http://localhost:4321/maras-blog/`.
 | `npm run build` | Validate and create the production build |
 | `npm run preview` | Preview the production build |
 
-Posts are defined in `src/data/posts.ts`. The homepage lists them, and Astro generates dedicated pages under `/writing/[slug]/`. The existing illustration is served unchanged from `public/hero.png`.
+Posts are defined in `src/data/posts.ts`. The homepage lists them, and Astro generates dedicated pages under `/writing/[slug]/`. The existing illustration is served unchanged from `public/hero.png`. Optional article figures include alt text, captions, source attribution, and full-size links; text-only sections need no image.
 
 ## Deployment
 

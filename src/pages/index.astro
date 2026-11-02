@@ -15,14 +15,16 @@ const buildDateLabel = new Intl.DateTimeFormat('en-US', {
 <BaseLayout>
   <main>
     <div class="hero shell" id="home">
-      <img
-        class="hero-art"
-        src={`${base}/hero.png`}
-        alt="Illustration of a researcher sitting with a laptop beside her playful black schnauzer puppy"
-        width="1774"
-        height="887"
-        decoding="async"
-      />
+      <div class="hero-print">
+        <img
+          class="hero-art"
+          src={`${base}/hero.png`}
+          alt="Illustration of a researcher sitting with a laptop beside her playful black schnauzer puppy"
+          width="1774"
+          height="887"
+          decoding="async"
+        />
+      </div>
     </div>
 
     <section class="articles-section shell" id="articles">
@@ -45,13 +47,21 @@ const buildDateLabel = new Intl.DateTimeFormat('en-US', {
     padding-top: 24px;
   }
 
+  .hero-print {
+    width: min(100%, 760px);
+    margin: 0 auto;
+    padding: 6px;
+    border: 1px solid #e8e7e2;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(30, 53, 66, 0.05);
+  }
+
   .hero-art {
     position: static;
     display: block;
-    width: min(100%, 760px);
+    width: 100%;
     max-width: 100%;
     height: auto;
-    margin: 0 auto;
     mask-image: none;
   }
 
@@ -87,6 +97,10 @@ const buildDateLabel = new Intl.DateTimeFormat('en-US', {
   @media (max-width: 700px) {
     .hero {
       padding-top: 16px;
+    }
+
+    .hero-print {
+      padding: 4px;
     }
 
     .articles-section {
