@@ -14,24 +14,20 @@ const buildDateLabel = new Intl.DateTimeFormat('en-US', {
 
 <BaseLayout>
   <main>
-    <section class="hero shell" id="home">
-      <div class="hero-copy">
-        <h1>Research and AI</h1>
-        <p>Notes on artificial intelligence, research, and the questions worth exploring.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#articles">Read the blog</a>
-        </div>
-      </div>
+    <div class="hero shell" id="home">
       <img
         class="hero-art"
         src={`${base}/hero.png`}
         alt="Illustration of a researcher sitting with a laptop beside her playful black schnauzer puppy"
+        width="1774"
+        height="887"
+        decoding="async"
       />
-    </section>
+    </div>
 
     <section class="articles-section shell" id="articles">
       <div class="posts-list">
-        <h2>Recent posts</h2>
+        <h1>Recent posts</h1>
         <div class="article-grid" id="article-grid">
           {posts.map((post) => <PostCard post={post} />)}
         </div>
@@ -43,41 +39,24 @@ const buildDateLabel = new Intl.DateTimeFormat('en-US', {
 
 <style>
   .hero {
-    min-height: 360px;
-  }
-
-  .hero-copy {
-    width: 52%;
-    max-width: 550px;
-    padding: 48px 0;
-  }
-
-  .hero h1 {
-    font-size: clamp(38px, 5vw, 56px);
-    letter-spacing: -1.5px;
-    margin: 0 0 12px;
-  }
-
-  .hero-copy > p {
-    max-width: 460px;
-    font-size: 16px;
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  .hero-actions {
-    margin-top: 24px;
+    display: block;
+    min-height: 0;
+    overflow: visible;
+    padding-top: 24px;
   }
 
   .hero-art {
-    right: 5%;
-    width: 55%;
-    bottom: 0;
-    mask-image: linear-gradient(to right, transparent, black 35%);
+    position: static;
+    display: block;
+    width: min(100%, 760px);
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    mask-image: none;
   }
 
   .articles-section {
-    padding-top: 48px;
+    padding-top: 32px;
     padding-bottom: 80px;
   }
 
@@ -85,7 +64,7 @@ const buildDateLabel = new Intl.DateTimeFormat('en-US', {
     max-width: 760px;
   }
 
-  .posts-list h2 {
+  .posts-list h1 {
     font-size: clamp(30px, 3vw, 38px);
     letter-spacing: -0.5px;
     margin: 0;
@@ -107,24 +86,11 @@ const buildDateLabel = new Intl.DateTimeFormat('en-US', {
 
   @media (max-width: 700px) {
     .hero {
-      display: block;
-      min-height: 0;
-    }
-
-    .hero-copy {
-      width: 100%;
-      padding: 40px 0 20px;
-    }
-
-    .hero-art {
-      position: static;
-      display: block;
-      width: 100%;
-      mask-image: none;
+      padding-top: 16px;
     }
 
     .articles-section {
-      padding-top: 36px;
+      padding-top: 32px;
       padding-bottom: 64px;
     }
   }

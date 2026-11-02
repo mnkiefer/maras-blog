@@ -15,7 +15,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 >
   <div class="post-body">
     <span class="post-meta">{post.category}</span>
-    <h3>{post.title}</h3>
+    <h2>{post.title}</h2>
     <p>{post.excerpt}</p>
     <div class="post-bottom">
       <time datetime={post.dateTime}>{post.date}</time> · {post.readTime}
@@ -39,8 +39,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     box-shadow: none;
   }
 
-  .post-card:hover h3,
-  .post-card:focus-visible h3 {
+  .post-card:hover h2,
+  .post-card:focus-visible h2 {
     text-decoration-color: currentColor;
   }
 
@@ -54,7 +54,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     text-transform: none;
   }
 
-  .post-body h3 {
+  .post-body h2 {
     margin: 8px 0;
     font-size: clamp(24px, 3vw, 30px);
     line-height: 1.2;
