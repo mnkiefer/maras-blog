@@ -1,8 +1,8 @@
-# Mara’s Blog
+# Mara’s Notes
 
-Research, AI & the ideas in between.
+Research, ideas, and notes in progress.
 
-An Astro blog about research, artificial intelligence, and curious thinking. The first article explores GitHub Next’s Central Agentic Ops research prototype.
+An Astro site for writing about research, artificial intelligence, and other ideas. The first article explores GitHub Next’s Central Agentic Ops research prototype.
 
 ## Development
 
