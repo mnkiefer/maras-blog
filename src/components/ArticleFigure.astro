@@ -164,6 +164,14 @@ const animatedSrc = figure.animatedSrc && `${base}${figure.animatedSrc}`;
     .figure-print {
       padding: 4px;
     }
+
+    .figure-print:has(img[src$='.svg']) {
+      overflow-x: auto;
+    }
+
+    img[src$='.svg'] {
+      min-width: 700px;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

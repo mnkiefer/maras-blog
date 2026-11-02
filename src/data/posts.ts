@@ -71,9 +71,9 @@ export const posts: Post[] = [
     intro:
       'Peli’s Agent Factory made the next problem unavoidable: determining whether routine agentic workflow activity created operational value.',
     introHtml:
-      '<a href="https://github.github.com/gh-aw/blog/2026-01-12-welcome-to-pelis-agent-factory/">Peli’s Agent Factory</a> asked what happens when natural-language, agent-driven repository automation becomes routine. We ran more than 100 specialized workflows in real repositories to expose useful patterns and failure modes.<sup><a class="citation" href="#source-agent-factory" aria-label="Source 1">[1]</a></sup> That experiment made the next problem unavoidable: determining whether any of this activity created operational value.',
+      '<a href="https://github.github.com/gh-aw/blog/2026-01-12-welcome-to-pelis-agent-factory/">Peli’s Agent Factory</a> asked what happens when natural-language, agent-driven repository automation becomes routine. We built and operated more than 100 specialized workflows, mostly in <code>github/gh-aw</code> and with some use in internal repositories, to expose useful patterns and failure modes.<sup><a class="citation" href="#source-agent-factory" aria-label="Source 1">[1]</a></sup> That experiment made the next problem unavoidable: determining whether any of this activity created operational value.',
     leadParagraphs: [
-      'Run success, AI Credit consumption, and safe-output counts are factory telemetry. Operational value requires a longer evidence chain: the workflow ran, produced an authorized output, that output was accepted, and the accepted work measurably improved the repository. This article describes how we began constructing that chain.',
+      'Run success, AI Credit consumption, and safe-output counts are factory telemetry. A safe output is an authorized repository artifact—such as an issue or pull request—created by the workflow. Operational value requires a longer evidence chain: the workflow ran, produced an authorized output, that output was accepted, and the accepted work measurably improved the repository. This article describes how we began constructing that chain.',
     ],
     sections: [
       {
@@ -93,11 +93,7 @@ export const posts: Post[] = [
           },
           {
             type: 'paragraph',
-            html: 'For agentic workflows, the first boundary was therefore acceptance.',
-          },
-          {
-            type: 'paragraph',
-            html: 'That question gave us the first of three distinct evidence boundaries. We needed to move from execution to output, from output to acceptance, and only then from acceptance to measured repository change.',
+            html: 'For agentic workflows, acceptance was therefore the first of three distinct evidence boundaries: execution to output, output to acceptance, and only then acceptance to measured repository change.',
           },
           {
             type: 'figure',
@@ -105,7 +101,7 @@ export const posts: Post[] = [
               src: '/operational-value-overview.svg',
               alt: 'Three-stage evidence flow: freeze a repository-native function with a baseline of two files, prove one accepted implementation from three retained safe outputs, then measure a change from two oversized files to one.',
               caption:
-                'Output production is not acceptance, and acceptance is not a measured repository outcome.',
+                'Illustrative evidence chain. Output production is not acceptance, and acceptance is not a measured repository outcome.',
               label: 'operational-value evidence overview',
               width: 1440,
               height: 700,
@@ -127,11 +123,7 @@ export const posts: Post[] = [
           },
           {
             type: 'paragraph',
-            html: 'That created our first measurement problem. Acceptance does not occur when the workflow runs. It occurs later, outside the run, and often through a different GitHub object.',
-          },
-          {
-            type: 'paragraph',
-            html: 'Our early approach was therefore a collector that returned to previously created safe outputs and inspected their later state. This at least gave us a way to observe whether a workflow had been allowed to do its work.',
+            html: 'That created our first measurement problem. Acceptance occurs later, outside the run, and often through a different GitHub object. Our early approach was therefore a collector that returned to previously created safe outputs and inspected their later state.',
           },
           {
             type: 'paragraph',
@@ -157,7 +149,7 @@ export const posts: Post[] = [
               src: '/safe-output-acceptance.svg',
               alt: 'Evidence table for three retained safe outputs. Issue 101 links explicitly to merged pull request 201 and is accepted; issue 102 is open and pending; issue 103 is closed without implementation lineage and remains unknown.',
               caption:
-                'Three retained outputs produce one accepted implementation. Closure without implementation lineage remains unknown, so no conversion rate is inferred.',
+                'Illustrative lifecycle evidence. Three retained outputs produce one accepted implementation. Closure without implementation lineage remains unknown, so no conversion rate is inferred.',
               label: 'safe-output acceptance evidence',
               width: 1440,
               height: 940,
@@ -170,7 +162,7 @@ export const posts: Post[] = [
           },
           {
             type: 'paragraph',
-            html: 'This separation also prevents a tempting but invalid “conversion rate.” The output population and accepted-implementation population have different evidence coverage. Missing historical receipts, incomplete lifecycle data, and right-censored pending work can make a simple ratio misleading. Unknown is not zero, and unresolved work is not automatically failure.',
+            html: 'This separation also prevents a tempting but invalid “conversion rate.” The output population and accepted-implementation population have different evidence coverage. Missing historical receipts—the durable records that an output was created—incomplete lifecycle data, and right-censored pending work whose eventual disposition is not yet observed can make a simple ratio misleading. Unknown is not zero, and unresolved work is not automatically failure.',
           },
           {
             type: 'paragraph',
@@ -200,7 +192,7 @@ export const posts: Post[] = [
         blocks: [
           {
             type: 'paragraph',
-            html: 'The alternative was to ask the agent <strong>once</strong>, at design time, rather than on every observation. Its task was to translate the workflow’s stated intent, deterministic precomputes, selection rules, and acceptance checks into a fixed function for measuring the intended repository outcome.',
+            html: 'The alternative was to ask the agent <strong>once</strong>, at design time, rather than on every observation. Its task was to translate the workflow’s stated intent, deterministic precomputes—facts gathered by code before the agent runs—selection rules, and acceptance checks into a fixed function for measuring the intended repository outcome.',
           },
           {
             type: 'paragraph',
@@ -295,7 +287,7 @@ export const posts: Post[] = [
               src: '/frozen-function-baseline.svg',
               alt: 'Frozen-function baseline diagram and horizontal bars for five Go files. Two non-test files under pkg have at least 800 lines and qualify; a test file and a file outside pkg are excluded; one eligible file is below the threshold.',
               caption:
-                'The frozen population rule yields an immutable baseline of two oversized production files. Exclusions are explicit rather than absorbed into a model score.',
+                'Illustrative baseline. The frozen population rule yields two oversized production files. Exclusions are explicit rather than absorbed into a model score.',
               label: 'frozen-function baseline',
               width: 1440,
               height: 980,
@@ -317,7 +309,7 @@ export const posts: Post[] = [
         blocks: [
           {
             type: 'paragraph',
-            html: 'Once an output has authoritative acceptance evidence, its acceptance time locates the relevant repository revisions. For a merged pull request, the actual first parent is the “before” state and the merge commit is the “after” state.',
+            html: 'Once an output has authoritative acceptance evidence, its acceptance time helps locate immutable before-and-after revisions. The mapping must follow the repository’s integration strategy: a merge or squash commit can use the accepted commit’s actual first parent as “before” and the accepted commit as “after,” while rebase merges, merge queues, and multi-commit integrations require an explicitly recorded base and accepted revision rather than an assumed first-parent rule.',
           },
           {
             type: 'paragraph',
@@ -329,7 +321,7 @@ export const posts: Post[] = [
               src: '/accepted-change-before-after.svg',
               alt: 'Before-and-after bars anchored at acceptance. The actual first parent has two oversized production files and the accepted merge has one, a decrease of one. Delivery lineage and the structural metric are complete; behavior preservation and exclusive causation are not established.',
               caption:
-                'Narrow claim: the accepted implementation is associated with one fewer oversized production file under the frozen measurement contract. Behavior preservation and exclusive causation remain unverified.',
+                'Illustrative narrow claim: the accepted implementation is associated with one fewer oversized production file under the frozen measurement contract. Behavior preservation and exclusive causation remain unverified.',
               label: 'accepted-change before and after evidence',
               width: 1200,
               height: 900,
