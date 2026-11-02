@@ -94,8 +94,34 @@ const categories = ['All', ...new Set(posts.map((post) => post.category))];
 </BaseLayout>
 
 <style>
+  .hero-art {
+    right: 5%;
+    width: 75%;
+    bottom: 0;
+    mask-image: linear-gradient(to right, transparent, black 35%);
+  }
+
   .article-grid.single-article {
     grid-template-columns: minmax(0, 440px);
+  }
+
+  @media (max-width: 1000px) {
+    .hero-art {
+      width: 80%;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .hero-art {
+      right: 6%;
+      width: 88%;
+      bottom: 13px;
+      mask-image: none;
+    }
+
+    .hero-scroll {
+      display: none;
+    }
   }
 </style>
 
