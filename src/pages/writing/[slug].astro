@@ -67,18 +67,23 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <style>
   .article-shell {
+    max-width: 1180px;
     padding-top: 48px;
     padding-bottom: 80px;
   }
 
   .back-link {
+    display: block;
+    max-width: 42rem;
+    margin-inline: auto;
     font-size: 14px;
     text-decoration: underline;
     text-underline-offset: 3px;
   }
 
   #article-content {
-    margin-top: 40px;
+    max-width: 42rem;
+    margin: 40px auto 0;
   }
 
   .article-category {
