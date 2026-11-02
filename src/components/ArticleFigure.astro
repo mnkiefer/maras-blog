@@ -1,0 +1,174 @@
+---
+import type { PostFigure } from '../data/posts';
+
+interface Props {
+  figure: PostFigure;
+}
+
+const { figure } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const stillSrc = `${base}${figure.src}`;
+const animatedSrc = figure.animatedSrc && `${base}${figure.animatedSrc}`;
+---
+
+<figure class:list={['article-figure', `article-figure--${figure.placement}`]}>
+  <div class="figure-print">
+    <picture>
+      {animatedSrc && <source media="(prefers-reduced-motion: reduce)" srcset={stillSrc} />}
+      <img
+        src={animatedSrc || stillSrc}
+        alt={figure.alt}
+        width={figure.width}
+        height={figure.height}
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
+  </div>
+  {animatedSrc && (
+    <button
+      class="animation-toggle"
+      type="button"
+      hidden
+      data-still-src={stillSrc}
+      data-animated-src={animatedSrc}
+    >Pause animation</button>
+  )}
+  <figcaption>
+    {figure.caption}
+    <span class="figure-links">
+      <a href={stillSrc}>View full-size {figure.label} {animatedSrc && '(still image)'}</a>
+      <a href={figure.sourceUrl}>Source: {figure.sourceLabel}</a>
+    </span>
+  </figcaption>
+</figure>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>('.animation-toggle')) {
+    const image = button.closest('figure')?.querySelector('img');
+    const stillSrc = button.dataset.stillSrc;
+    const animatedSrc = button.dataset.animatedSrc;
+    if (!image || !stillSrc || !animatedSrc) {
+      throw new Error('Article animation controls are incomplete.');
+    }
+
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      const paused = button.dataset.paused === 'true';
+      image.src = paused ? animatedSrc : stillSrc;
+      button.textContent = paused ? 'Pause animation' : 'Play animation';
+      if (paused) delete button.dataset.paused;
+      else button.dataset.paused = 'true';
+    });
+  }
+</script>
+
+<style>
+  .article-figure {
+    margin: 32px 0 42px;
+  }
+
+  .article-figure--aside-left,
+  .article-figure--aside-right {
+    width: min(34%, 260px);
+    margin-top: 0;
+  }
+
+  .article-figure--aside-left {
+    float: left;
+    margin-right: 24px;
+  }
+
+  .article-figure--aside-right {
+    float: right;
+    margin-left: 24px;
+  }
+
+  .article-figure--center {
+    max-width: 600px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .article-figure--wide {
+    position: relative;
+    left: 50%;
+    width: min(1200px, 90vw);
+    transform: translateX(-50%);
+  }
+
+  .figure-print {
+    padding: 6px;
+    border: 1px solid #e8e7e2;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(30, 53, 66, 0.05);
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  figcaption {
+    margin-top: 12px;
+    font: 14px/1.6 'DM Sans', sans-serif;
+    color: var(--sub);
+  }
+
+  .figure-links {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 22px;
+    margin-top: 4px;
+  }
+
+  .figure-links a,
+  .animation-toggle {
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .figure-links a {
+    display: inline-block;
+    padding: 12px 0;
+    overflow-wrap: anywhere;
+  }
+
+  .animation-toggle {
+    display: block;
+    min-height: 44px;
+    margin: 8px 0 0;
+    padding: 8px 0;
+    border: 0;
+    background: none;
+    font: 600 14px/1.5 'DM Sans', sans-serif;
+    cursor: pointer;
+  }
+
+  .animation-toggle:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 700px) {
+    .article-figure--aside-left,
+    .article-figure--aside-right {
+      float: none;
+      width: 100%;
+      max-width: 390px;
+      margin: 24px auto 32px;
+    }
+
+    .figure-print {
+      padding: 4px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animation-toggle {
+      display: none !important;
+    }
+  }
+</style>
