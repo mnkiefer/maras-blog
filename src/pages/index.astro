@@ -4,7 +4,6 @@ import PostCard from '../components/PostCard.astro';
 import { posts } from '../data/posts';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const categories = ['All', ...new Set(posts.map((post) => post.category))];
 const buildDate = new Date();
 const buildDateISO = buildDate.toISOString().slice(0, 10);
 const buildDateLabel = new Intl.DateTimeFormat('en-US', {
@@ -17,11 +16,10 @@ const buildDateLabel = new Intl.DateTimeFormat('en-US', {
   <main>
     <section class="hero shell" id="home">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="eyebrow-line"></span> RESEARCH &amp; AI</div>
-        <h1>Curiosity,<br /><em>carefully considered.</em></h1>
-        <p>Notes on artificial intelligence, the craft of research, and the questions that make us think twice.</p>
+        <h1>Research and AI</h1>
+        <p>Notes on artificial intelligence, research, and the questions worth exploring.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#articles">Read the blog <span>↗</span></a>
+          <a class="button primary" href="#articles">Read the blog</a>
         </div>
       </div>
       <img
@@ -32,74 +30,71 @@ const buildDateLabel = new Intl.DateTimeFormat('en-US', {
     </section>
 
     <section class="articles-section shell" id="articles">
-      <div class="section-heading">
-        <div><h2>Recent writing<span class="accent">.</span></h2></div>
-      </div>
-      {posts.length > 1 && (
-        <div class="filters" role="group" aria-label="Filter articles">
-          {categories.map((category, index) => (
-            <button class:list={['filter', { active: index === 0 }]} data-filter={category}>
-              {category === 'All' ? 'All writing' : category}
-            </button>
-          ))}
+      <div class="posts-list">
+        <h2>Recent posts</h2>
+        <div class="article-grid" id="article-grid">
+          {posts.map((post) => <PostCard post={post} />)}
         </div>
-      )}
-      <div class:list={['article-grid', { 'single-article': posts.length === 1 }]} id="article-grid">
-        {posts.map((post) => <PostCard post={post} />)}
+        <p class="last-updated">Last updated <time datetime={buildDateISO}>{buildDateLabel}</time></p>
       </div>
-      <p class="last-updated">Last updated <time datetime={buildDateISO}>{buildDateLabel}</time></p>
     </section>
   </main>
 </BaseLayout>
 
 <style>
   .hero {
-    min-height: 430px;
+    min-height: 360px;
   }
 
   .hero-copy {
-    padding: 48px 0 56px;
+    width: 52%;
+    max-width: 550px;
+    padding: 48px 0;
   }
 
   .hero h1 {
-    font-size: clamp(44px, 4.5vw, 66px);
-    margin: 22px 0 18px;
+    font-size: clamp(38px, 5vw, 56px);
+    letter-spacing: -1.5px;
+    margin: 0 0 12px;
   }
 
   .hero-copy > p {
-    font-size: 15px;
+    max-width: 460px;
+    font-size: 16px;
     line-height: 1.6;
-    margin: 0 0 22px;
+    margin: 0;
   }
 
-  .eyebrow {
-    font-size: 12px;
-    letter-spacing: 1.8px;
+  .hero-actions {
+    margin-top: 24px;
   }
 
   .hero-art {
     right: 5%;
-    width: 56%;
+    width: 55%;
     bottom: 0;
     mask-image: linear-gradient(to right, transparent, black 35%);
   }
 
   .articles-section {
-    padding-top: 60px;
+    padding-top: 48px;
     padding-bottom: 80px;
   }
 
-  .section-heading {
-    margin-bottom: 30px;
+  .posts-list {
+    max-width: 760px;
   }
 
-  .section-heading h2 {
-    font-size: clamp(38px, 4vw, 58px);
-    margin-top: 0;
+  .posts-list h2 {
+    font-size: clamp(30px, 3vw, 38px);
+    letter-spacing: -0.5px;
+    margin: 0;
   }
 
-  .article-grid.single-article {
-    grid-template-columns: minmax(0, 440px);
+  .article-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    margin-top: 12px;
   }
 
   .last-updated {
@@ -110,29 +105,15 @@ const buildDateLabel = new Intl.DateTimeFormat('en-US', {
     text-align: right;
   }
 
-  .article-grid.single-article + .last-updated {
-    max-width: 440px;
-  }
-
-  @media (max-width: 1000px) {
-    .hero-copy {
-      width: 58%;
-    }
-  }
-
   @media (max-width: 700px) {
     .hero {
+      display: block;
       min-height: 0;
     }
 
     .hero-copy {
       width: 100%;
-      padding: 36px 0 16px;
-    }
-
-    .hero h1 {
-      font-size: clamp(40px, 8vw, 56px);
-      letter-spacing: -2px;
+      padding: 40px 0 20px;
     }
 
     .hero-art {
@@ -143,25 +124,8 @@ const buildDateLabel = new Intl.DateTimeFormat('en-US', {
     }
 
     .articles-section {
-      padding-top: 42px;
+      padding-top: 36px;
       padding-bottom: 64px;
     }
   }
 </style>
-
-<script>
-  const filters = document.querySelectorAll<HTMLButtonElement>('.filter');
-  const cards = document.querySelectorAll<HTMLElement>('.post-card');
-
-  filters.forEach((button) => {
-    button.addEventListener('click', () => {
-      filters.forEach((filter) => filter.classList.remove('active'));
-      button.classList.add('active');
-
-      cards.forEach((card) => {
-        card.hidden = button.dataset.filter !== 'All'
-          && card.dataset.category !== button.dataset.filter;
-      });
-    });
-  });
-</script>

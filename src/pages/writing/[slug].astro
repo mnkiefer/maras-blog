@@ -22,10 +22,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="shell article-shell">
       <a href={`${base}/#articles`} class="back-link">← All writing</a>
       <article id="article-content">
-        <div class="article-category">{post.category.toUpperCase()} · <time datetime={post.dateTime}>{post.date}</time> · {post.readTime}</div>
+        <div class="article-category">{post.category} · <time datetime={post.dateTime}>{post.date}</time> · {post.readTime}</div>
         <h1 class="article-title">{post.title}</h1>
         <p class="article-deck">{post.intro}</p>
-        <hr class="article-rule" />
         <div class="article-prose">
           {post.sections.map((section) => (
             <section>
@@ -43,21 +42,50 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           </section>
         </div>
       </article>
-      <div class="article-footer">
-        <a class="button primary" href={`${base}/#articles`}>Back to all articles <span>↗</span></a>
-      </div>
     </div>
   </main>
 </BaseLayout>
 
 <style>
+  .article-shell {
+    padding-top: 48px;
+    padding-bottom: 80px;
+  }
+
   .back-link {
-    font-size: 13px;
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  #article-content {
+    margin-top: 40px;
   }
 
   .article-category {
-    font-size: 12px;
-    letter-spacing: 1.5px;
+    font-size: 13px;
+    letter-spacing: 0;
+    font-weight: 500;
+  }
+
+  .article-title {
+    font-size: clamp(36px, 5vw, 58px);
+    letter-spacing: -1px;
+    line-height: 1.15;
+    margin: 14px 0;
+  }
+
+  .article-deck {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  .article-prose {
+    font-size: 20px;
+  }
+
+  .article-prose h2 {
+    font-size: 32px;
   }
 
   .article-prose a {
@@ -87,9 +115,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   @media (max-width: 700px) {
     .article-title {
-      font-size: clamp(38px, 9vw, 50px);
-      letter-spacing: -1px;
-      line-height: 1.1;
+      font-size: clamp(34px, 8vw, 44px);
     }
 
     .article-deck {
