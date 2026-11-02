@@ -1,0 +1,36 @@
+---
+import ArticleFigure from './ArticleFigure.astro';
+import type { PostBlock } from '../data/posts';
+
+interface Props {
+  block: PostBlock;
+}
+
+const { block } = Astro.props;
+---
+
+{
+  block.type === 'paragraph' && <p set:html={block.html} />
+}
+{
+  block.type === 'ordered-list' && (
+    <ol>
+      {block.items.map((item) => <li set:html={item} />)}
+    </ol>
+  )
+}
+{
+  block.type === 'unordered-list' && (
+    <ul>
+      {block.items.map((item) => <li set:html={item} />)}
+    </ul>
+  )
+}
+{
+  block.type === 'code' && (
+    <pre><code>{block.code}</code></pre>
+  )
+}
+{
+  block.type === 'figure' && <ArticleFigure figure={block.figure} />
+}

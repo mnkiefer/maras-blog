@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Accepted change before-and-after evidence</title>
+  <desc id="desc">At acceptance, the frozen structural metric decreases from two oversized files in the actual first parent to one in the accepted merge. Delivery lineage and the metric are complete, while behavior preservation and exclusive causation are not established.</desc>
+  <defs>
+    <style>
+      .title{font:500 36px Georgia,serif;fill:#202d36}.sub{font:16px Arial,sans-serif;fill:#5d6b70}.anchor{font:700 13px Arial,sans-serif;letter-spacing:1.2px;fill:#386d9e}.label{font:700 17px Arial,sans-serif;fill:#202d36}.body{font:14px Arial,sans-serif;fill:#5d6b70}.value{font:700 28px Arial,sans-serif;fill:#202d36}.result{font:700 25px Arial,sans-serif;fill:#386d9e}.badge-head{font:700 14px Arial,sans-serif;fill:#202d36}.badge-body{font:13px Arial,sans-serif;fill:#5d6b70}.status{font:700 12px Arial,sans-serif;letter-spacing:.8px}
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0 0L12 6L0 12Z" fill="#749db7"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="900" rx="22" fill="#fbfaf7"/>
+  <text class="title" x="60" y="66">Measure the accepted change at immutable revisions</text>
+  <text class="sub" x="60" y="99">The frozen function is applied before and after the authoritative merge disposition.</text>
+
+  <line x1="600" y1="135" x2="600" y2="520" stroke="#d9987b" stroke-width="3" stroke-dasharray="8 7"/>
+  <rect x="500" y="125" width="200" height="36" rx="18" fill="#fff8f3" stroke="#d9987b"/>
+  <text class="anchor" x="600" y="149" text-anchor="middle">ACCEPTANCE ANCHOR</text>
+
+  <g transform="translate(90 205)">
+    <rect width="430" height="220" rx="16" fill="#fff" stroke="#d9dedf" stroke-width="2"/>
+    <text class="label" x="26" y="44">Actual first parent</text>
+    <text class="body" x="26" y="70">Immutable state immediately before merge</text>
+    <rect x="26" y="105" width="300" height="48" rx="8" fill="#d9dedf"/>
+    <text class="value" x="375" y="140" text-anchor="end">2 files</text>
+    <text class="body" x="26" y="190">Same frozen population and 800-line threshold</text>
+  </g>
+  <path d="M530 315H670" stroke="#749db7" stroke-width="3" marker-end="url(#arrow)"/>
+  <g transform="translate(680 205)">
+    <rect width="430" height="220" rx="16" fill="#fff" stroke="#b9cedb" stroke-width="2"/>
+    <text class="label" x="26" y="44">Accepted merge commit</text>
+    <text class="body" x="26" y="70">Authoritative state after accepted implementation</text>
+    <rect x="26" y="105" width="150" height="48" rx="8" fill="#749db7"/>
+    <text class="value" x="375" y="140" text-anchor="end">1 file</text>
+    <text class="body" x="26" y="190">Same frozen population and 800-line threshold</text>
+  </g>
+
+  <rect x="360" y="465" width="480" height="68" rx="14" fill="#e8f0f5" stroke="#b9cedb"/>
+  <text class="result" x="600" y="506" text-anchor="middle">Direction-aware result: +1 fewer oversized file</text>
+
+  <text x="60" y="592" font-family="Georgia,serif" font-size="27" fill="#202d36">Evidence boundaries</text>
+  <g transform="translate(60 620)">
+    <rect width="525" height="90" rx="14" fill="#fff" stroke="#b9cedb"/>
+    <circle cx="34" cy="34" r="15" fill="#e8f0f5" stroke="#386d9e"/>
+    <path d="M27 34l5 5 10-12" fill="none" stroke="#386d9e" stroke-width="3"/>
+    <text class="badge-head" x="60" y="31">Delivery lineage</text>
+    <text class="badge-body" x="60" y="55">Explicit safe-output link to merged implementation</text>
+    <text class="status" x="470" y="34" text-anchor="end" fill="#285879">COMPLETE</text>
+  </g>
+  <g transform="translate(615 620)">
+    <rect width="525" height="90" rx="14" fill="#fff" stroke="#b9cedb"/>
+    <circle cx="34" cy="34" r="15" fill="#e8f0f5" stroke="#386d9e"/>
+    <path d="M27 34l5 5 10-12" fill="none" stroke="#386d9e" stroke-width="3"/>
+    <text class="badge-head" x="60" y="31">Frozen structural metric</text>
+    <text class="badge-body" x="60" y="55">Same function applied to both revisions</text>
+    <text class="status" x="470" y="34" text-anchor="end" fill="#285879">COMPLETE</text>
+  </g>
+  <g transform="translate(60 735)">
+    <rect width="525" height="90" rx="14" fill="#fff" stroke="#d9987b"/>
+    <circle cx="34" cy="34" r="15" fill="#fff8f3" stroke="#d9987b"/>
+    <path d="M26 34h16" stroke="#ad5b39" stroke-width="3"/>
+    <text class="badge-head" x="60" y="31">Behavior preservation</text>
+    <text class="badge-body" x="60" y="55">Requires separate quality evidence</text>
+    <text class="status" x="470" y="34" text-anchor="end" fill="#8b4a30">NOT VERIFIED</text>
+  </g>
+  <g transform="translate(615 735)">
+    <rect width="525" height="90" rx="14" fill="#fff" stroke="#d9987b"/>
+    <circle cx="34" cy="34" r="15" fill="#fff8f3" stroke="#d9987b"/>
+    <path d="M26 34h16" stroke="#ad5b39" stroke-width="3"/>
+    <text class="badge-head" x="60" y="31">Exclusive causation</text>
+    <text class="badge-body" x="60" y="55">Association does not isolate the workflow</text>
+    <text class="status" x="470" y="34" text-anchor="end" fill="#8b4a30">NOT ESTABLISHED</text>
+  </g>
+</svg>

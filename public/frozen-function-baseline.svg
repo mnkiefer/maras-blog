@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="980" viewBox="0 0 1440 980" role="img" aria-labelledby="title desc">
+  <title id="title">Frozen function and immutable baseline</title>
+  <desc id="desc">Workflow intent is translated into a frozen function and applied to an immutable baseline parent. A bar chart classifies five Go files, with two qualifying as oversized production files.</desc>
+  <defs>
+    <style>
+      .title{font:500 38px Georgia,serif;fill:#202d36}.sub{font:16px Arial,sans-serif;fill:#5d6b70}.flow-label{font:700 13px Arial,sans-serif;letter-spacing:1.2px;fill:#386d9e}.flow-head{font:500 23px Georgia,serif;fill:#202d36}.flow-body{font:14px Arial,sans-serif;fill:#5d6b70}.chart-title{font:500 27px Georgia,serif;fill:#202d36}.file{font:600 14px Arial,sans-serif;fill:#202d36}.value{font:700 14px Arial,sans-serif;fill:#202d36}.reason{font:13px Arial,sans-serif;fill:#5d6b70}.axis{font:12px Arial,sans-serif;fill:#5d6b70}.badge{font:700 12px Arial,sans-serif;letter-spacing:.8px}.result{font:700 20px Arial,sans-serif;fill:#202d36}
+    </style>
+    <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="#f3f5f4"/>
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#c4cbcc" stroke-width="3"/>
+    </pattern>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0 0L12 6L0 12Z" fill="#749db7"/>
+    </marker>
+  </defs>
+  <rect width="1440" height="980" rx="22" fill="#fbfaf7"/>
+  <text class="title" x="60" y="68">Freeze the contract before observing the result</text>
+  <text class="sub" x="60" y="101">The same population, threshold, and missing-data rules are applied to the actual baseline revision.</text>
+
+  <g transform="translate(60 135)">
+    <rect width="370" height="150" rx="16" fill="#fff" stroke="#d9dedf" stroke-width="2"/>
+    <text class="flow-label" x="24" y="35">WORKFLOW INTENT</text>
+    <text class="flow-head" x="24" y="72">Reduce oversized files</text>
+    <text class="flow-body" x="24" y="104">Natural-language instructions, imports,</text>
+    <text class="flow-body" x="24" y="127">precomputes, filters, and safe outputs</text>
+    <path d="M386 75H444" stroke="#749db7" stroke-width="3" marker-end="url(#arrow)"/>
+  </g>
+  <g transform="translate(510 135)">
+    <rect width="420" height="150" rx="16" fill="#e8f0f5" stroke="#b9cedb" stroke-width="2"/>
+    <text class="flow-label" x="24" y="35">FROZEN FUNCTION</text>
+    <text class="flow-head" x="24" y="72">Count qualifying .go files</text>
+    <text class="flow-body" x="24" y="104">Under pkg/; exclude tests; at least 800 lines;</text>
+    <text class="flow-body" x="24" y="127">lower is better; missing evidence is unavailable</text>
+    <path d="M436 75H494" stroke="#749db7" stroke-width="3" marker-end="url(#arrow)"/>
+  </g>
+  <g transform="translate(1010 135)">
+    <rect width="370" height="150" rx="16" fill="#fff8f3" stroke="#d9987b" stroke-width="2"/>
+    <text class="flow-label" x="24" y="35">IMMUTABLE BASELINE PARENT</text>
+    <text class="flow-head" x="24" y="72">Actual first parent</text>
+    <text class="flow-body" x="24" y="104">Apply the reviewed function to repository</text>
+    <text class="flow-body" x="24" y="127">evidence that predates adoption</text>
+  </g>
+
+  <g transform="translate(60 335)">
+    <text class="chart-title" x="0" y="30">Baseline file population</text>
+    <text class="sub" x="0" y="60">Bar length shows lines of code. Labels and patterns make every classification explicit.</text>
+
+    <line x1="390" y1="105" x2="1260" y2="105" stroke="#d9dedf"/>
+    <line x1="390" y1="105" x2="390" y2="560" stroke="#d9dedf"/>
+    <line x1="680" y1="105" x2="680" y2="560" stroke="#e5e8e8"/>
+    <line x1="970" y1="105" x2="970" y2="560" stroke="#d9987b" stroke-width="3" stroke-dasharray="8 6"/>
+    <line x1="1260" y1="105" x2="1260" y2="560" stroke="#e5e8e8"/>
+    <text class="axis" x="390" y="90" text-anchor="middle">0</text>
+    <text class="axis" x="680" y="90" text-anchor="middle">400</text>
+    <text class="axis" x="970" y="90" text-anchor="middle">800 threshold</text>
+    <text class="axis" x="1260" y="90" text-anchor="middle">1200 lines</text>
+
+    <g transform="translate(0 130)">
+      <text class="file" x="0" y="20">pkg/cli/add_command.go</text>
+      <text class="reason" x="0" y="43">eligible production file</text>
+      <rect x="390" y="0" width="819" height="32" rx="5" fill="#749db7"/>
+      <text class="value" x="1221" y="22">1129</text>
+      <rect x="1268" y="0" width="92" height="32" rx="16" fill="#e8f0f5" stroke="#386d9e"/>
+      <text class="badge" x="1314" y="21" text-anchor="middle" fill="#285879">QUALIFIES</text>
+    </g>
+    <g transform="translate(0 225)">
+      <text class="file" x="0" y="20">pkg/api/router.go</text>
+      <text class="reason" x="0" y="43">eligible production file</text>
+      <rect x="390" y="0" width="624" height="32" rx="5" fill="#749db7"/>
+      <text class="value" x="1026" y="22">860</text>
+      <rect x="1268" y="0" width="92" height="32" rx="16" fill="#e8f0f5" stroke="#386d9e"/>
+      <text class="badge" x="1314" y="21" text-anchor="middle" fill="#285879">QUALIFIES</text>
+    </g>
+    <g transform="translate(0 320)">
+      <text class="file" x="0" y="20">pkg/api/router_test.go</text>
+      <text class="reason" x="0" y="43">excluded: test file</text>
+      <rect x="390" y="0" width="870" height="32" rx="5" fill="url(#hatch)" stroke="#8b9697" stroke-dasharray="5 4"/>
+      <text class="value" x="1218" y="22">1200</text>
+      <rect x="1268" y="0" width="92" height="32" rx="16" fill="#f3f5f4" stroke="#8b9697"/>
+      <text class="badge" x="1314" y="21" text-anchor="middle" fill="#46545a">EXCLUDED</text>
+    </g>
+    <g transform="translate(0 415)">
+      <text class="file" x="0" y="20">cmd/server/main.go</text>
+      <text class="reason" x="0" y="43">excluded: outside pkg/</text>
+      <rect x="390" y="0" width="653" height="32" rx="5" fill="url(#hatch)" stroke="#8b9697" stroke-dasharray="5 4"/>
+      <text class="value" x="1055" y="22">900</text>
+      <rect x="1268" y="0" width="92" height="32" rx="16" fill="#f3f5f4" stroke="#8b9697"/>
+      <text class="badge" x="1314" y="21" text-anchor="middle" fill="#46545a">EXCLUDED</text>
+    </g>
+    <g transform="translate(0 510)">
+      <text class="file" x="0" y="20">pkg/store/cache.go</text>
+      <text class="reason" x="0" y="43">eligible, below threshold</text>
+      <rect x="390" y="0" width="305" height="32" rx="5" fill="#d9987b"/>
+      <text class="value" x="707" y="22">420</text>
+      <rect x="1245" y="0" width="115" height="32" rx="16" fill="#fff8f3" stroke="#d9987b"/>
+      <text class="badge" x="1302" y="21" text-anchor="middle" fill="#8b4a30">BELOW 800</text>
+    </g>
+  </g>
+
+  <rect x="60" y="915" width="1320" height="44" rx="12" fill="#e8f0f5" stroke="#b9cedb"/>
+  <text class="result" x="720" y="944" text-anchor="middle">Result: 2 oversized production files at the immutable baseline</text>
+</svg>

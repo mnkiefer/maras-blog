@@ -2,7 +2,7 @@
 
 Research, ideas, and notes in progress.
 
-An Astro site for writing about research, artificial intelligence, and other ideas. The first article explores GitHub Next’s Central Agentic Ops research prototype.
+An Astro site for writing about research, artificial intelligence, and other ideas. The current articles explore GitHub Next’s Central Agentic Ops research prototype and how to measure operational value from agentic workflows.
 
 ## Development
 
@@ -22,7 +22,7 @@ The local site is available at `http://localhost:4321/maras-blog/`.
 | `npm run build` | Validate and create the production build |
 | `npm run preview` | Preview the production build |
 
-Posts are defined in `src/data/posts.ts`. The homepage lists them, and Astro generates dedicated pages under `/writing/[slug]/`. The existing illustration is served unchanged from `public/hero.png`. Optional article figures can sit beside prose on either side, appear centered, or span the article width; they include alt text, captions, source attribution, and full-size links. Animated figures use a still image for reduced-motion visitors and offer a pause control. Text-only sections need no image. The CAO workflow animation is captured locally from [GitHub Next’s MIT-licensed illustration](https://github.com/githubnext/gh-cao/blob/main/docs/components/WorkflowEcosystem.astro).
+Posts are defined in `src/data/posts.ts`. The homepage lists them, and Astro generates dedicated pages under `/writing/[slug]/`. Post sections support paragraphs, ordered and unordered lists, code blocks, figures, and post-specific sources. The existing illustration is served unchanged from `public/hero.png`. Optional article figures can sit beside prose on either side, appear centered, or span the article width; they include alt text, captions, optional source attribution, and full-size links. Animated figures use a still image for reduced-motion visitors and offer a pause control. Text-only sections need no image. The CAO workflow animation is captured locally from [GitHub Next’s MIT-licensed illustration](https://github.com/githubnext/gh-cao/blob/main/docs/components/WorkflowEcosystem.astro).
 
 ## Deployment
 
