@@ -1,6 +1,5 @@
 ---
 import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -30,9 +29,20 @@ const {
     />
     <title>{title}</title>
   </head>
-  <body id="top">
+  <body>
     <Header />
     <slot />
-    <Footer />
   </body>
 </html>
+
+<style is:global>
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .post-card {
+      transition: none;
+    }
+  }
+</style>

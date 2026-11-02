@@ -4,47 +4,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <header class="site-header">
   <div class="shell nav-wrap">
-    <a class="wordmark" href={`${base}/#home`} aria-label="Mara’s Blog home">
-      Mara’s Blog<span class="wordmark-dot">.</span>
-      <span class="wordmark-subtitle">Research, AI &amp; the ideas in between.</span>
-    </a>
-    <nav aria-label="Main navigation">
-      <a href={`${base}/#articles`}>Writing</a>
-      <a href={`${base}/#about`}>About</a>
-      <a href={`${base}/#newsletter`}>Notes in your inbox</a>
-    </nav>
-    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <a class="wordmark" href={`${base}/#home`} aria-label="Mara’s Blog home">Mara’s Blog</a>
   </div>
 </header>
 
 <style>
+  .nav-wrap {
+    height: 72px;
+  }
+
   .wordmark {
     line-height: 1.15;
-  }
-
-  .wordmark-subtitle {
-    display: block;
-    margin-top: 5px;
-    color: var(--sub);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0;
+    color: #ad5b39;
   }
 </style>
-
-<script>
-  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
-  const navigation = document.querySelector<HTMLElement>('.site-header nav');
-
-  toggle?.addEventListener('click', () => {
-    navigation?.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', String(navigation?.classList.contains('open')));
-  });
-
-  navigation?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      navigation.classList.remove('open');
-      toggle?.setAttribute('aria-expanded', 'false');
-    });
-  });
-</script>

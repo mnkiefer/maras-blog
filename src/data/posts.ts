@@ -9,8 +9,6 @@ export interface Post {
   date: string;
   dateTime: string;
   readTime: string;
-  tone: 'blue' | 'peach' | 'sage';
-  symbol: string;
   title: string;
   excerpt: string;
   intro: string;
@@ -23,9 +21,7 @@ export const posts: Post[] = [
     category: 'Artificial Intelligence',
     date: 'October 31, 2026',
     dateTime: '2026-10-31',
-    readTime: '5 MIN READ',
-    tone: 'blue',
-    symbol: 'CAO',
+    readTime: '5 min read',
     title: 'GitHub Central Agentic Ops: From AI Agents to Governed Operations',
     excerpt:
       'A first look at GitHub Next’s experimental control plane for monitoring and governing agentic workflows across repositories.',

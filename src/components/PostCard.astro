@@ -12,25 +12,69 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <a
   class="post-card"
   href={`${base}/writing/${post.slug}/`}
-  data-category={post.category}
 >
-  <div class:list={['post-visual', post.tone]}>
-    <span class:list={['visual-shape', { 'word-symbol': post.symbol.length > 1 }]}>{post.symbol}</span>
-  </div>
   <div class="post-body">
     <span class="post-meta">{post.category}</span>
     <h3>{post.title}</h3>
     <p>{post.excerpt}</p>
     <div class="post-bottom">
-      <span><time datetime={post.dateTime}>{post.date}</time> · {post.readTime}</span>
-      <span aria-hidden="true">↗</span>
+      <time datetime={post.dateTime}>{post.date}</time> · {post.readTime}
     </div>
   </div>
 </a>
 
 <style>
-  .visual-shape.word-symbol {
-    font-size: 42px;
-    letter-spacing: -2px;
+  .post-card {
+    display: block;
+    padding: 24px 0;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    transition: none;
+    overflow: visible;
+  }
+
+  .post-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .post-card:hover h3,
+  .post-card:focus-visible h3 {
+    text-decoration-color: currentColor;
+  }
+
+  .post-body {
+    padding: 0;
+  }
+
+  .post-meta {
+    font-size: 13px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .post-body h3 {
+    margin: 8px 0;
+    font-size: clamp(24px, 3vw, 30px);
+    line-height: 1.2;
+    text-decoration: underline;
+    text-decoration-color: var(--line);
+    text-underline-offset: 3px;
+  }
+
+  .post-body p {
+    margin: 0 0 12px;
+    min-height: 0;
+    font-size: 15px;
+  }
+
+  .post-bottom {
+    display: block;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    color: var(--sub);
+    font-size: 13px;
   }
 </style>
