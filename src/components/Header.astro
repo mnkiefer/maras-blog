@@ -6,7 +6,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <div class="shell nav-wrap">
     <a class="wordmark" href={`${base}/#home`} aria-label="Mara’s Blog home">
       Mara’s Blog<span class="wordmark-dot">.</span>
-      <span class="wordmark-subtitle">Research, AI &amp; the ideas in between.</span>
     </a>
     <nav aria-label="Main navigation">
       <a href={`${base}/#articles`}>Writing</a>
@@ -15,18 +14,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 </header>
 
 <style>
+  .nav-wrap {
+    height: 72px;
+  }
+
   .wordmark {
     line-height: 1.15;
     color: #ad5b39;
   }
 
-  .wordmark-subtitle {
-    display: block;
-    margin-top: 5px;
-    color: var(--sub);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0;
+  nav {
+    font-size: 14px;
   }
 
   @media (max-width: 700px) {

@@ -11,7 +11,7 @@ const categories = ['All', ...new Set(posts.map((post) => post.category))];
   <main>
     <section class="hero shell" id="home">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="eyebrow-line"></span> A PERSONAL RESEARCH JOURNAL</div>
+        <div class="eyebrow"><span class="eyebrow-line"></span> RESEARCH &amp; AI</div>
         <h1>Curiosity,<br /><em>carefully considered.</em></h1>
         <p>Notes on artificial intelligence, the craft of research, and the questions that make us think twice.</p>
         <div class="hero-actions">
@@ -27,7 +27,7 @@ const categories = ['All', ...new Set(posts.map((post) => post.category))];
 
     <section class="articles-section shell" id="articles">
       <div class="section-heading">
-        <div><span class="small-label">THE JOURNAL</span><h2>Recent writing<span class="accent">.</span></h2></div>
+        <div><h2>Recent writing<span class="accent">.</span></h2></div>
       </div>
       {posts.length > 1 && (
         <div class="filters" role="group" aria-label="Filter articles">
@@ -65,6 +65,11 @@ const categories = ['All', ...new Set(posts.map((post) => post.category))];
     margin: 0 0 22px;
   }
 
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 1.8px;
+  }
+
   .hero-art {
     right: 5%;
     width: 56%;
@@ -83,6 +88,7 @@ const categories = ['All', ...new Set(posts.map((post) => post.category))];
 
   .section-heading h2 {
     font-size: clamp(38px, 4vw, 58px);
+    margin-top: 0;
   }
 
   .article-grid.single-article {
